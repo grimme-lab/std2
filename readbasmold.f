@@ -723,7 +723,7 @@ cccccccccccccccccccccccccccc
 
       if(imethod*nbf.gt.nmo)then
          write(*,*) 'spherical AO basis'
-         if(mform==1.or.mform==2)then
+         if(mform==0.or.mform==1.or.mform==2)then
          spherical=.true.
          else
          spherical=.false.

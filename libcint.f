@@ -180,7 +180,7 @@ c center of nuclear charge and molar mass
       orb_cart(10,10)=3
       ! For cartesian basis libcint uses d and f not normalized
       if(spherical)then
-      norm_cart=1.0
+      norm_cart=1.0d0
       else
         norm_cart=1.0d0
         norm_cart(6,1)=1.0d0
