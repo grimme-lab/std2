@@ -625,7 +625,10 @@ c read the tm2xx file, otherwise (-f option) the tm2molden file
       dokshift=.false.
       endif
 
-      if(index(dummy,'-chk').ne.0) chkinp=.true. ! do input check
+      if(index(dummy,'-chk').ne.0)then
+      chkinp=.true. ! do input check
+      cint=.false.
+      endif
       if(index(dummy,'-vectm').ne.0)then
          eigvec=.true. ! print eigenvectors
          call getarg(i+1,dummy)
@@ -854,6 +857,7 @@ c use calculated ovlp from intslvm   c
 c to check input (Mulliken-pop)      c
 cccccccccccccccccccccccccccccccccccccc
       if(chkinp) then
+        deallocate(ipat,ipao)
         call mulpopcheck(nbf,nmo,cc,occ,idum)
         if(idum.ne.0) then ! restart from input read if norm is wrong
           mform=mform+1
