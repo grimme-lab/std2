@@ -219,6 +219,9 @@ See the manual on the [release page](https://github.com/grimme-lab/stda/releases
 - M. de Wergifosse, Computing excited states of very large systems with range-separated hybrid functionals and the eXact integral simplified time-dependent density functional theory (XsTD-DFT), *J. Phys. Chem. Lett.*, **2024**, 15, (51) 12628–12635.
   DOI: [10.1021/acs.jpclett.4c03193](https://doi.org/10.1021/acs.jpclett.4c03193)
 
+- M. G. Maraldi, M. de Wergifosse, Evaluating the performance of the eXact integral simplified time-dependent density functional theory (XsTD-DFT) to compute one- and two-photon absorption, *J. Phys. Chem. A*, **2025**, 129, (35) 8178–8203.
+  DOI: [10.1021/acs.jpca.5c03189](https://doi.org/10.1021/acs.jpca.5c03189)
+
 ## License
 
 `std2` is free software: you can redistribute it and/or modify it under
