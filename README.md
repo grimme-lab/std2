@@ -1,5 +1,5 @@
+![std2logo_git](https://github.com/grimme-lab/std2/blob/master/std2logo_git.png)
 # *std2* program for computing excited states and response functions via simplified TD-DFT methods (sTDA, sTD-DFT, SF-sTD-DFT, XsTDA, XsTD-DFT, and SF-Xs-TD-DFT)[![DOI](https://zenodo.org/badge/221426808.svg)](https://doi.org/10.5281/zenodo.4022460)
-
 This project provides the `std2` program.
 
 The `std2` program is the rebranded and updated version of the `stda` program. Originally, `stda` was implemented only for the simplified time-dependent density functional theory using the Tamm-Dancoff approximation (sTDA) method. With the implementation of more simplified quantum chemistry (sQC) methods in `stda`, the name was not fitting the application of the program anymore.
