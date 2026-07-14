@@ -41,6 +41,7 @@
 !       common /amass  / ams(107)
 
       allocate(atm(1:6,1:ncent))
+      atm = 0 ! avoid move on uninitialized value
       j=21 ! variables are defined below 20 note that the array in libcint starts with 0
       Do i=1, ncent
       atm(1,i)=int(co(i,4))  ! atom charge
@@ -72,6 +73,7 @@
 
       nbas=j
       allocate(bas(1:8,1:nbas))
+      bas = 0 ! avoid move on uninitialized value
 
       j=0
       n_env=n_env+1
@@ -92,6 +94,7 @@
       enddo
 
       allocate(env(1:n_env)) ! start with 20 because variables are passed with values <=
+      env=0.0d0 ! avoid move on uninitialized value
       !env(1) threshold on integrals
       !env(1)=7.0d0
 c center of nuclear charge and molar mass
