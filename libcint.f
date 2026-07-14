@@ -21,7 +21,7 @@
       use commonlibcint
       use omp_lib
       implicit none
-      integer :: i,j,k,l,n,m
+      integer :: i,j,k,l,n,m,r
       integer :: ncent,nprims,nbf
       integer, allocatable :: info(:)
       double precision, parameter :: PI=4.D0*DATAN(1.D0)
@@ -31,7 +31,7 @@
       double precision :: overlap_AO(nbf*(nbf+1)/2)
       double precision :: norm_cart(1:10,1:10)
 
-      integer,external :: CINTcgto_cart
+      integer,external :: CINTcgto_cart, cint1e_ovlp_cart
 
       integer*8 ::lin8
 
@@ -95,6 +95,7 @@
 
       allocate(env(1:n_env)) ! start with 20 because variables are passed with values <=
       env=0.0d0 ! avoid move on uninitialized value
+
       !env(1) threshold on integrals
       !env(1)=7.0d0
 c center of nuclear charge and molar mass
@@ -154,6 +155,7 @@ c center of nuclear charge and molar mass
       enddo
 
       allocate(di_all(nbas),sum_di(nbas))
+      di_all = 0
       sum_di=0
       Do i=1, nbas
       di_all(i)=CINTcgto_cart(i-1,bas)
@@ -212,7 +214,7 @@ c center of nuclear charge and molar mass
       shls(2)=j-1 ; dj=di_all(j)
       allocate(buf(di,dj))
       buf=0.0
-      call cint1e_ovlp_cart(buf,shls,atm,ncent,bas,nbas,env)
+      r = cint1e_ovlp_cart(buf,shls,atm,ncent,bas,nbas,env)
 !       write(*,*)i,j
 !       write(*,*)buf(:,1:dj)
       Do k=1,di
@@ -229,7 +231,7 @@ c center of nuclear charge and molar mass
 
       shls(2)=i-1 ; dj=di
       allocate(buf(di,di))
-      call cint1e_ovlp_cart(buf,shls,atm,ncent,bas,nbas,env)
+      r = cint1e_ovlp_cart(buf,shls,atm,ncent,bas,nbas,env)
 !       write(*,*)i,i
       Do k=1,di
       Do l=1,k-1
