@@ -31,7 +31,7 @@
       double precision :: overlap_AO(nbf*(nbf+1)/2)
       double precision :: norm_cart(1:10,1:10)
 
-      integer,external :: CINTcgto_cart, cint1e_ovlp_cart
+      integer,external :: CINTcgto_cart
 
       integer*8 ::lin8
 
@@ -214,7 +214,7 @@ c center of nuclear charge and molar mass
       shls(2)=j-1 ; dj=di_all(j)
       allocate(buf(di,dj))
       buf=0.0
-      r = cint1e_ovlp_cart(buf,shls,atm,ncent,bas,nbas,env)
+      call cint1e_ovlp_cart(buf,shls,atm,ncent,bas,nbas,env,0)
 !       write(*,*)i,j
 !       write(*,*)buf(:,1:dj)
       Do k=1,di
@@ -231,7 +231,7 @@ c center of nuclear charge and molar mass
 
       shls(2)=i-1 ; dj=di
       allocate(buf(di,di))
-      r = cint1e_ovlp_cart(buf,shls,atm,ncent,bas,nbas,env)
+      call cint1e_ovlp_cart(buf,shls,atm,ncent,bas,nbas,env,0)
 !       write(*,*)i,i
       Do k=1,di
       Do l=1,k-1
@@ -322,7 +322,7 @@ c center of nuclear charge and molar mass
       shls(2)=j-1 ; dj=di_all(j)
       allocate(buf(di,dj*3))
       buf=0.0
-      call cint1e_r_cart(buf,shls,atm,ncent,bas,nbas,env)
+      call cint1e_r_cart(buf,shls,atm,ncent,bas,nbas,env,0)
       Do n=1,3
       Do k=1,di
       Do l=1,dj
@@ -337,7 +337,7 @@ c center of nuclear charge and molar mass
 
       shls(2)=i-1 ; dj=di
       allocate(buf(di,di*3))
-      call cint1e_r_cart(buf,shls,atm,ncent,bas,nbas,env)
+      call cint1e_r_cart(buf,shls,atm,ncent,bas,nbas,env,0)
       Do n=1,3
       Do k=1,di
       Do l=1,k-1
@@ -425,7 +425,7 @@ c center of nuclear charge and molar mass
       shls(2)=j-1 ; dj=di_all(j)
       allocate(buf(di,dj*3))
       buf=0.0
-      call cint1e_cg_irxp_cart(buf,shls,atm,ncent,bas,nbas,env)
+      call cint1e_cg_irxp_cart(buf,shls,atm,ncent,bas,nbas,env,0)
       !write(*,*)i,di,j,dj,buf
       Do n=1,3
       Do k=1,di
@@ -441,7 +441,7 @@ c center of nuclear charge and molar mass
 
       shls(2)=i-1 ; dj=di
       allocate(buf(di,di*3))
-      call cint1e_cg_irxp_cart(buf,shls,atm,ncent,bas,nbas,env)
+      call cint1e_cg_irxp_cart(buf,shls,atm,ncent,bas,nbas,env,0)
 
       Do n=1,3
       Do k=1,di
@@ -587,7 +587,7 @@ c center of nuclear charge and molar mass
       Do j=1,i-1
       shls(2)=j-1 ; dj=di_all(j)
       allocate(buf(di,dj*9),buf1(di,dj*3))
-      call cint1e_irp_cart(buf,shls,atm,ncent,bas,nbas,env)
+      call cint1e_irp_cart(buf,shls,atm,ncent,bas,nbas,env,0)
       Do k=1,di
       Do l=1,dj
       buf1(k,l+(0)*dj)=buf(k,l+(5)*dj)-buf(k,l+(7)*dj)
@@ -610,7 +610,7 @@ c center of nuclear charge and molar mass
 
       shls(2)=i-1 ; dj=di
       allocate(buf(di,di*9),buf1(di,di*3))
-      call cint1e_irp_cart(buf,shls,atm,ncent,bas,nbas,env)
+      call cint1e_irp_cart(buf,shls,atm,ncent,bas,nbas,env,0)
       Do k=1,di
       Do l=1,di
       buf1(k,l+(0)*di)=buf(k,l+(5)*di)-buf(k,l+(7)*di)
@@ -726,7 +726,7 @@ c center of nuclear charge and molar mass
       shls(2)=j-1 ; dj=di_all(j)
       allocate(buf(di,dj*3))
       buf=0.0
-      call cint1e_p_cart(buf,shls,atm,ncent,bas,nbas,env)
+      call cint1e_p_cart(buf,shls,atm,ncent,bas,nbas,env,0)
       Do n=1,3
       Do k=1,di
       Do l=1,dj
@@ -741,7 +741,7 @@ c center of nuclear charge and molar mass
 
       shls(2)=i-1 ; dj=di
       allocate(buf(di,di*3))
-      call cint1e_p_cart(buf,shls,atm,ncent,bas,nbas,env)
+      call cint1e_p_cart(buf,shls,atm,ncent,bas,nbas,env,0)
       Do n=1,3
       Do k=1,di
       Do l=1,k-1
@@ -829,7 +829,7 @@ c center of nuclear charge and molar mass
       Do j=1,i-1
       shls(2)=j-1 ; dj=di_all(j)
       allocate(buf(di,dj*9))!XX,XY,XZ,YX,YY,YZ,ZX,ZY,ZZ
-      call cint1e_rr_cart(buf,shls,atm,ncent,bas,nbas,env)
+      call cint1e_rr_cart(buf,shls,atm,ncent,bas,nbas,env,0)
 
       Do k=1,di
       Do l=1,dj
@@ -859,7 +859,7 @@ c center of nuclear charge and molar mass
 
       shls(2)=i-1 ; dj=di
       allocate(buf(di,di*9))
-      call cint1e_rr_cart(buf,shls,atm,ncent,bas,nbas,env)
+      call cint1e_rr_cart(buf,shls,atm,ncent,bas,nbas,env,0)
 
       Do k=1,di
       Do l=1,k-1
